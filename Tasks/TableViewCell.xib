@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="KGk-i7-Jjw" userLabel="Cell" customClass="TaskCell" customModule="Tasks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sC1-KO-yPQ">
+                        <rect key="frame" x="14" y="5" width="35" height="34"/>
+                        <color key="tintColor" red="0.25161388516426086" green="0.55484610795974731" blue="0.55518573522567749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" image="circle" catalog="system">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uef-yQ-pI2"/>
+                        </connections>
+                    </button>
+                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JWe-4x-62o">
+                        <rect key="frame" x="57" y="5" width="245" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="JWe-4x-62o" firstAttribute="leading" secondItem="sC1-KO-yPQ" secondAttribute="trailing" constant="8" id="Gmn-Di-BHR"/>
+                    <constraint firstAttribute="trailing" secondItem="JWe-4x-62o" secondAttribute="trailing" constant="18" id="LNV-L5-k4K"/>
+                    <constraint firstItem="sC1-KO-yPQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="RGn-Qg-6Ru"/>
+                    <constraint firstAttribute="bottom" secondItem="sC1-KO-yPQ" secondAttribute="bottom" constant="5" id="bAD-hk-sQA"/>
+                    <constraint firstItem="sC1-KO-yPQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="gBr-6J-Ku9"/>
+                    <constraint firstAttribute="bottom" secondItem="JWe-4x-62o" secondAttribute="bottom" constant="5" id="szV-MM-X4l"/>
+                    <constraint firstItem="JWe-4x-62o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="tBX-iP-XC1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <accessibility key="accessibilityConfiguration" identifier="Cell"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="taskCircle" destination="sC1-KO-yPQ" id="2Ga-Mp-evX"/>
+                <outlet property="taskName" destination="JWe-4x-62o" id="hOK-Fz-sfm"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
