@@ -13,7 +13,6 @@ class ViewController: UITableViewController {
     
     var tasks: [String] = ["2", "3", "4"]
     private let reuseId = "Cell"
-    var textFieldHeight: CGFloat = 35
     
     // MARK: - View Lifecycle
     
@@ -25,23 +24,22 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Tasks"
-        navigationController?.navigationBar.tintColor = .systemBlue
         navigationController?.isToolbarHidden = false
         toolbarItems = [UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .done, target: self, action: #selector(addNewItem))]
         
         tableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: reuseId)
-        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
     @objc func addNewItem(_ sender: UIBarButtonItem){
         let indexPath = IndexPath(row: tasks.count, section: 0)
         tasks.insert("", at: indexPath.row)
         tableView.insertRows(at: [indexPath], with: .fade)
-        
         if let cell = tableView.cellForRow(at: indexPath) as? TaskCell {
             cell.taskCircle.setImage(UIImage(systemName: "circle"), for: .normal)
-            cell.taskName.textColor = .black
-            cell.taskName.becomeFirstResponder()
+            cell.taskTitle.textColor = .black
+            cell.taskTitle.becomeFirstResponder()
         }
     }
     
@@ -49,7 +47,6 @@ class ViewController: UITableViewController {
     
     
     // MARK: - TableView Data Source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
@@ -58,11 +55,13 @@ class ViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as? TaskCell else {return UITableViewCell()}
         cell.updateTFDelegate = self
         cell.deleteCellDelegate = self
-        cell.taskName.text = tasks[indexPath.row]
-        //cell.taskName.
+        cell.taskTitle.text = tasks[indexPath.row]
+        cell.selectionStyle = .none
         
-        if textFieldHeight < cell.taskName.frame.height{
-            textFieldHeight = cell.taskName.frame.height
+        cell.refreshCell = {
+            () -> Void in
+            tableView.beginUpdates()
+            tableView.endUpdates()
         }
         
         return cell
@@ -70,7 +69,14 @@ class ViewController: UITableViewController {
     
     // MARK: - TableView Delegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return textFieldHeight
+        return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }
 
@@ -86,7 +92,7 @@ extension ViewController: DeleteCellDelegate{
     func didTappedAt(_ cell: TaskCell) {
         if let indexPath = tableView.indexPath(for: cell) {
             cell.taskCircle.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-            cell.taskName.textColor = .lightGray
+            cell.taskTitle.textColor = .lightGray
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.tasks.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .fade)

@@ -17,34 +17,52 @@ protocol DeleteCellDelegate: class {
 }
 
 class TaskCell: UITableViewCell {
+    
+    var refreshCell:(() -> Void)? = nil
 
-    @IBOutlet weak var taskName: UITextField!
     @IBOutlet weak var taskCircle: UIButton!
+    @IBOutlet weak var taskTitle: UITextView!
     
     weak var updateTFDelegate: UserInputCellDelegate?
     weak var deleteCellDelegate: DeleteCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        taskName.delegate = self
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        taskTitle.delegate = self
+        taskTitle.isScrollEnabled = false
+        taskTitle.sizeToFit()
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
         deleteCellDelegate?.didTappedAt(self)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        updateTFDelegate?.didUpdate(cell: self, string: textField.text)
+    func textViewDidEndEditing(_ textView: UITextView) {
+        updateTFDelegate?.didUpdate(cell: self, string: textView.text)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        contentView.endEditing(true)
-        return false
+    //
+    func textViewDidChange(_ textView: UITextView) {
+        perform(#selector(queuedTextVewDidChange),
+                with: nil,
+                afterDelay: 0.1)
+    }
+    @objc func queuedTextVewDidChange() {
+        if let refreshCell = refreshCell {
+            refreshCell()
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n"{
+            textView.endEditing(true)
+            return false
+        }else{
+            return true
+        }
     }
 }
+
+extension TaskCell: UITextViewDelegate{}
 
 extension TaskCell: UITextFieldDelegate{}

@@ -18,7 +18,7 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sC1-KO-yPQ">
                         <rect key="frame" x="14" y="5" width="35" height="34"/>
-                        <color key="tintColor" red="0.25161388516426086" green="0.55484610795974731" blue="0.55518573522567749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.25161388516426086" green="0.47508904460358292" blue="0.55518573522567749" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="circle" catalog="system">
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30"/>
                         </state>
@@ -26,27 +26,28 @@
                             <action selector="buttonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uef-yQ-pI2"/>
                         </connections>
                     </button>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JWe-4x-62o">
-                        <rect key="frame" x="57" y="5" width="245" height="34"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" scrollEnabled="NO" text="New item" translatesAutoresizingMaskIntoConstraints="NO" id="3UC-6J-OFf">
+                        <rect key="frame" x="57" y="5" width="255" height="33"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JWe-4x-62o" firstAttribute="leading" secondItem="sC1-KO-yPQ" secondAttribute="trailing" constant="8" id="Gmn-Di-BHR"/>
-                    <constraint firstAttribute="trailing" secondItem="JWe-4x-62o" secondAttribute="trailing" constant="18" id="LNV-L5-k4K"/>
+                    <constraint firstItem="3UC-6J-OFf" firstAttribute="leading" secondItem="sC1-KO-yPQ" secondAttribute="trailing" constant="8" id="57H-Pz-tLF"/>
+                    <constraint firstAttribute="bottom" secondItem="3UC-6J-OFf" secondAttribute="bottom" constant="6" id="Icn-Y4-RZ4"/>
                     <constraint firstItem="sC1-KO-yPQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="RGn-Qg-6Ru"/>
-                    <constraint firstAttribute="bottom" secondItem="sC1-KO-yPQ" secondAttribute="bottom" constant="5" id="bAD-hk-sQA"/>
                     <constraint firstItem="sC1-KO-yPQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="gBr-6J-Ku9"/>
-                    <constraint firstAttribute="bottom" secondItem="JWe-4x-62o" secondAttribute="bottom" constant="5" id="szV-MM-X4l"/>
-                    <constraint firstItem="JWe-4x-62o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="tBX-iP-XC1"/>
+                    <constraint firstItem="3UC-6J-OFf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="pKv-Gr-N2O"/>
+                    <constraint firstAttribute="trailing" secondItem="3UC-6J-OFf" secondAttribute="trailing" constant="8" id="ySk-l8-ALq"/>
                 </constraints>
             </tableViewCellContentView>
             <accessibility key="accessibilityConfiguration" identifier="Cell"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="taskCircle" destination="sC1-KO-yPQ" id="2Ga-Mp-evX"/>
-                <outlet property="taskName" destination="JWe-4x-62o" id="hOK-Fz-sfm"/>
+                <outlet property="taskTitle" destination="3UC-6J-OFf" id="aCU-eE-dbk"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
         </tableViewCell>
