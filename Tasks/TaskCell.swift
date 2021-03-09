@@ -23,7 +23,7 @@ class TaskCell: UITableViewCell {
     @IBOutlet weak var taskCircle: UIButton!
     @IBOutlet weak var taskTitle: UITextView!
     
-    weak var updateTFDelegate: UserInputCellDelegate?
+    weak var updateTVDelegate: UserInputCellDelegate?
     weak var deleteCellDelegate: DeleteCellDelegate?
     
     override func awakeFromNib() {
@@ -32,16 +32,16 @@ class TaskCell: UITableViewCell {
         taskTitle.isScrollEnabled = false
         taskTitle.sizeToFit()
     }
-    
+    //вызвать функцию удаления ячейки по кнопке
     @IBAction func buttonTapped(_ sender: UIButton) {
         deleteCellDelegate?.didTappedAt(self)
     }
-    
+    //вызвать функцию обновления данных textView
     func textViewDidEndEditing(_ textView: UITextView) {
-        updateTFDelegate?.didUpdate(cell: self, string: textView.text)
+        updateTVDelegate?.didUpdate(cell: self, string: textView.text)
     }
     
-    //
+    //Увеличить высотку при наборе текста
     func textViewDidChange(_ textView: UITextView) {
         perform(#selector(queuedTextVewDidChange),
                 with: nil,
@@ -52,7 +52,7 @@ class TaskCell: UITableViewCell {
             refreshCell()
         }
     }
-    
+    //скрыть клавиатуру при нажали return
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n"{
             textView.endEditing(true)
@@ -64,5 +64,3 @@ class TaskCell: UITableViewCell {
 }
 
 extension TaskCell: UITextViewDelegate{}
-
-extension TaskCell: UITextFieldDelegate{}

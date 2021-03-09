@@ -72,12 +72,12 @@
 				CE41823325F234D6001A90F0 /* Assets.xcassets */,
 				CE41823525F234D6001A90F0 /* LaunchScreen.storyboard */,
 				CE41823825F234D6001A90F0 /* Info.plist */,
-				CE41823025F234D3001A90F0 /* Tasks.xcdatamodeld */,
-				CE41823E25F235C6001A90F0 /* Task+CoreDataClass.swift */,
-				CE41823F25F235C6001A90F0 /* Task+CoreDataProperties.swift */,
 				CE41824625F24093001A90F0 /* TaskCell.swift */,
 				CE41824725F24093001A90F0 /* TableViewCell.xib */,
 				CE41827025F24A89001A90F0 /* Storyboard.storyboard */,
+				CE41823025F234D3001A90F0 /* Tasks.xcdatamodeld */,
+				CE41823E25F235C6001A90F0 /* Task+CoreDataClass.swift */,
+				CE41823F25F235C6001A90F0 /* Task+CoreDataProperties.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
