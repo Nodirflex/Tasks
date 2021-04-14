@@ -4,3 +4,4 @@
 1. Создания новой записи по кнопке, чтобы пользователь мог сразу вводить текст.
 2. Удаления записи по нажатию на круглую кнопку через 3 секунды
 3. Сохранения данных с помощью CoreData
+![Image of project](https://mega.nz/file/9EokXRLR#axGejNq4g7h9jGa9bFmfcizapQoqDI_sDVGaO7CL8FM)
